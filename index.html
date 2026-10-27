@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Explore trusted history resources, primary sources, and beautifully curated collections from across time."
+    />
+    <meta name="theme-color" content="#153d32" />
+    <title>Online History Hub — The past, thoughtfully explored</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#" aria-label="Online History Hub home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none">
+            <path d="M7 25V8.5c0-1 .8-1.8 1.8-1.8H25v16.5c0 1-.8 1.8-1.8 1.8H7Z" />
+            <path d="M11 11h10M11 15h10M11 19h6M7 25c0-1 .8-1.8 1.8-1.8H25" />
+          </svg>
+        </span>
+        <span class="brand-name">Online History <span>Hub</span></span>
+      </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#explore">Explore</a>
+        <a href="#collections">Collections</a>
+        <a href="#about">About</a>
+      </nav>
+      <a class="header-link" href="#explore">
+        Start exploring <span aria-hidden="true">↗</span>
+      </a>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-grain" aria-hidden="true"></div>
+        <div class="hero-inner">
+          <p class="eyebrow hero-eyebrow"><span></span> A living library of the past</p>
+          <h1 id="hero-title">History is a story.<br /><em>Find your place in it.</em></h1>
+          <p class="hero-copy">
+            A thoughtful starting point for curious minds. Explore trusted
+            sources, remarkable stories, and the moments that shaped our world.
+          </p>
+          <form class="search-form" role="search" id="search-form">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="10.8" cy="10.8" r="6.8"></circle>
+              <path d="m16 16 4.5 4.5"></path>
+            </svg>
+            <label class="sr-only" for="history-search">Search history resources</label>
+            <input
+              id="history-search"
+              name="q"
+              type="search"
+              placeholder="Try “the Roman Empire” or “women in history”…"
+              autocomplete="off"
+            />
+            <kbd class="search-shortcut" aria-hidden="true">↵</kbd>
+            <button type="submit">Search <span aria-hidden="true">→</span></button>
+          </form>
+          <div class="popular-searches">
+            <span>Popular:</span>
+            <button type="button" data-query="Ancient Egypt">Ancient Egypt</button>
+            <button type="button" data-query="Renaissance">Renaissance</button>
+            <button type="button" data-query="Civil Rights">Civil Rights</button>
+            <button type="button" data-query="World War II">World War II</button>
+          </div>
+          <p class="search-reach"><span aria-hidden="true">↗</span> Search millions of records across seven public indexes</p>
+        </div>
+        <div class="hero-aside" aria-hidden="true">
+          <div class="orbit orbit-one"></div>
+          <div class="orbit orbit-two"></div>
+          <div class="sun-disc"></div>
+          <div class="hero-aside-label"><span>01</span> THE HUMAN STORY</div>
+          <div class="hero-aside-caption">Every era leaves<br />a trace.</div>
+          <div class="hero-aside-year">c. 3000 BCE — TODAY</div>
+        </div>
+        <div class="hero-bottom">
+          <span>KNOWLEDGE WITHOUT BORDERS</span>
+          <span class="hero-bottom-line"></span>
+          <span>EST. FOR THE CURIOUS</span>
+        </div>
+      </section>
+
+      <section class="content-section" id="explore" aria-labelledby="explore-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow"><span class="eyebrow-dot"></span> Your next discovery</p>
+            <h2 id="explore-title">Explore the collection</h2>
+          </div>
+          <p class="section-intro">
+            Start with hand-picked sources, then explore public library catalogs,
+            scholarly indexes, open-access journals, repositories, and Wikipedia.
+          </p>
+        </div>
+
+        <div class="results-toolbar">
+          <p id="results-count" aria-live="polite">A few good places to begin</p>
+          <label class="sort-control">
+            <span>Browse</span>
+            <select id="category-filter" aria-label="Filter by resource type">
+              <option value="all">All resources</option>
+              <option value="Article">Articles</option>
+              <option value="Primary source">Primary sources</option>
+              <option value="Academic paper">Academic papers</option>
+              <option value="Open-access article">Open-access articles</option>
+              <option value="Archival resource">Archives</option>
+              <option value="Repository record">Repository records</option>
+              <option value="News report">News reports</option>
+              <option value="Document">Documents</option>
+            </select>
+          </label>
+        </div>
+        <p class="discovery-status" id="discovery-status" aria-live="polite" hidden></p>
+        <p class="discovery-note">
+          Search results are records and links from public indexes. Totals belong to each index and may overlap;
+          full-text availability depends on the source.
+        </p>
+        <div class="resource-grid" id="resource-grid" aria-live="polite"></div>
+        <div class="empty-state" id="empty-state" hidden>
+          <span class="empty-icon" aria-hidden="true">⌕</span>
+          <h3>No stories found just yet</h3>
+          <p>Try a broader search, or clear your filters to explore the full collection.</p>
+          <button type="button" id="clear-search">Clear search</button>
+        </div>
+        <div class="load-more-wrap load-more-control" id="load-more-wrap" hidden>
+          <button type="button" id="load-more">Load more records <span aria-hidden="true">↓</span></button>
+        </div>
+        <div class="load-more-wrap">
+          <span class="load-more-rule"></span>
+          <span>Curated for the endlessly curious</span>
+          <span class="load-more-rule"></span>
+        </div>
+      </section>
+
+      <section class="collections-section" id="collections" aria-labelledby="collections-title">
+        <div class="collections-topline">
+          <p class="eyebrow"><span class="eyebrow-dot"></span> Take the scenic route</p>
+          <span>CURATED COLLECTIONS <span aria-hidden="true">↘</span></span>
+        </div>
+        <div class="collections-heading">
+          <h2 id="collections-title">Big ideas.<br /><em>Connected stories.</em></h2>
+          <p>Follow a thread across centuries, continents, and cultures.</p>
+        </div>
+        <div class="collection-grid">
+          <button class="collection-card collection-civil" type="button" data-query="Civil Rights">
+            <span class="collection-number">01 / PEOPLE &amp; POWER</span>
+            <span class="collection-symbol" aria-hidden="true">✳</span>
+            <span class="collection-title">The long road<br />to equality</span>
+            <span class="collection-foot">Voices that changed the world <span>↗</span></span>
+          </button>
+          <button class="collection-card collection-ancient" type="button" data-query="Ancient Egypt">
+            <span class="collection-number">02 / ANCIENT WORLDS</span>
+            <span class="collection-symbol" aria-hidden="true">☼</span>
+            <span class="collection-title">Life along<br />the Nile</span>
+            <span class="collection-foot">Discover ancient Egypt <span>↗</span></span>
+          </button>
+          <button class="collection-card collection-ideas" type="button" data-query="Renaissance">
+            <span class="collection-number">03 / ART &amp; IDEAS</span>
+            <span class="collection-symbol" aria-hidden="true">✺</span>
+            <span class="collection-title">A world<br />reborn</span>
+            <span class="collection-foot">Inside the Renaissance <span>↗</span></span>
+          </button>
+        </div>
+      </section>
+
+      <section class="about-strip" id="about">
+        <div class="about-mark" aria-hidden="true">H.</div>
+        <div>
+          <p class="eyebrow">Good history asks better questions</p>
+          <p class="about-copy">
+            We bring together trusted institutions and enduring sources to make
+            exploring the past feel open to everyone.
+          </p>
+        </div>
+        <a href="#explore" class="about-link">Find a new thread <span>→</span></a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a class="brand footer-brand" href="#">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none">
+            <path d="M7 25V8.5c0-1 .8-1.8 1.8-1.8H25v16.5c0 1-.8 1.8-1.8 1.8H7Z" />
+            <path d="M11 11h10M11 15h10M11 19h6M7 25c0-1 .8-1.8 1.8-1.8H25" />
+          </svg>
+        </span>
+        <span class="brand-name">Online History <span>Hub</span></span>
+      </a>
+      <span class="footer-note">The past is closer than you think.</span>
+      <span class="copyright">© 2025 ONLINE HISTORY HUB</span>
+    </footer>
+  </body>
+</html>
